@@ -19,8 +19,6 @@ class LocationAPI {
       throw StateError(response.body);
     }
 
-    print('My location before Location.fromJson: ' + response.body);
-
     final Location location = Location.fromJson(jsonDecode(response.body));
 
     return location;

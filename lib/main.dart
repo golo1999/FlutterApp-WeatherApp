@@ -12,7 +12,7 @@ import 'package:weather_app/src/presentation/home_page.dart';
 import 'package:weather_app/src/reducer/reducer.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: '.env');
+  await dotenv.load(fileName: 'assets/.env');
 
   const String apiURL = 'http://ip-api.com/json/?fields=33615871';
   final Client client = Client();

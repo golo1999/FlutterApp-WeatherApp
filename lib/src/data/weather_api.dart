@@ -24,8 +24,6 @@ class WeatherAPI {
       },
     );
 
-    print(url.toString());
-
     final Response response = await _httpClient.get(url);
 
     if (response.statusCode >= 300) {
