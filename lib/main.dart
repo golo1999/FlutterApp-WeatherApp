@@ -17,18 +17,11 @@ Future<void> main() async {
 
   final Client client = Client();
 
-  final LocationAPI locationAPI = LocationAPI(
-    httpClient: client,
-  );
+  final LocationAPI locationAPI = LocationAPI(httpClient: client);
 
-  final LocalWeatherAPI weatherAPI = LocalWeatherAPI(
-    httpClient: client,
-  );
+  final LocalWeatherAPI weatherAPI = LocalWeatherAPI(httpClient: client);
 
-  final LocationMiddleware locationMiddleware = LocationMiddleware(
-    locationAPI: locationAPI,
-    weatherAPI: weatherAPI,
-  );
+  final LocationMiddleware locationMiddleware = LocationMiddleware(locationAPI: locationAPI, weatherAPI: weatherAPI);
 
   final Store<AppState> store = Store<AppState>(
     reducer,
@@ -36,15 +29,9 @@ Future<void> main() async {
     middleware: locationMiddleware.middleware,
   );
 
-  store.dispatch(
-    GetLocation(),
-  );
+  store.dispatch(GetLocation());
 
-  runApp(
-    MyLocation(
-      store: store,
-    ),
-  );
+  runApp(MyLocation(store: store));
 }
 
 class MyLocation extends StatelessWidget {

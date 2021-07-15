@@ -11,5 +11,4 @@ import 'location.dart';
 part 'serializers.g.dart';
 
 @SerializersFor(<Type>[AppState, Current, Weather, Location, LocalWeather])
-Serializers serializers =
-(_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
+Serializers serializers = (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

@@ -72,8 +72,7 @@ class HomePage extends StatelessWidget {
                                 if (location != null && localWeather != null)
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          data.size.shortestSide * 0.025,
+                                      horizontal: data.size.shortestSide * 0.025,
                                       vertical: data.size.shortestSide * 0.01,
                                     ),
                                     child: Text(
@@ -92,9 +91,7 @@ class HomePage extends StatelessWidget {
                                       data.size.shortestSide * 0.025,
                                     ),
                                     child: Text(
-                                      localWeather
-                                          .current.weather.first.description
-                                          .toUpperCase(),
+                                      localWeather.current.weather.first.description.toUpperCase(),
                                       style: TextStyle(
                                         color: primaryColor,
                                         fontSize: data.size.shortestSide * 0.05,

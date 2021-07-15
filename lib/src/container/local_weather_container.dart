@@ -5,8 +5,7 @@ import 'package:weather_app/src/models/app_state.dart';
 import 'package:weather_app/src/models/local_weather.dart';
 
 class LocalWeatherContainer extends StatelessWidget {
-  const LocalWeatherContainer({Key? key, required this.builder})
-      : super(key: key);
+  const LocalWeatherContainer({Key? key, required this.builder}) : super(key: key);
 
   final ViewModelBuilder<LocalWeather?> builder;
 

@@ -56,9 +56,7 @@ String getIconPathFromWeather(final Weather weather) {
                           ? smokeIcon
                           : weather.id == 721
                               ? hazeIcon
-                              : (weather.id == 731 ||
-                                      weather.id == 751 ||
-                                      weather.id == 761)
+                              : (weather.id == 731 || weather.id == 751 || weather.id == 761)
                                   ? sandDustIcon
                                   : weather.id == 741
                                       ? fogIcon
@@ -68,29 +66,15 @@ String getIconPathFromWeather(final Weather weather) {
                                               ? windSquallsIcon
                                               : weather.id == 781
                                                   ? tornadoIcon
-                                                  : (weather.id == 800 &&
-                                                          weather.icon == '01d')
+                                                  : (weather.id == 800 && weather.icon == '01d')
                                                       ? clearSkyDayIcon
-                                                      : (weather.id == 800 &&
-                                                              weather.icon ==
-                                                                  '01n')
+                                                      : (weather.id == 800 && weather.icon == '01n')
                                                           ? clearSkyNightIcon
-                                                          : (weather.id >=
-                                                                          801 &&
-                                                                      weather.id <=
-                                                                          804) &&
-                                                                  weather.icon
-                                                                      .endsWith(
-                                                                          'd')
+                                                          : (weather.id >= 801 && weather.id <= 804) &&
+                                                                  weather.icon.endsWith('d')
                                                               ? cloudsDayIcon
-                                                              : ((weather.id >=
-                                                                              801 &&
-                                                                          weather.id <=
-                                                                              804) &&
-                                                                      weather
-                                                                          .icon
-                                                                          .endsWith(
-                                                                              'n'))
+                                                              : ((weather.id >= 801 && weather.id <= 804) &&
+                                                                      weather.icon.endsWith('n'))
                                                                   ? cloudsNightIcon
                                                                   : '';
 }

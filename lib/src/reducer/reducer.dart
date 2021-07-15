@@ -17,8 +17,7 @@ AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
   });
 }
 
-AppState _getWeatherSuccessful(
-    AppState state, GetLocalWeatherSuccessful action) {
+AppState _getWeatherSuccessful(AppState state, GetLocalWeatherSuccessful action) {
   return state.rebuild((AppStateBuilder builder) {
     builder.weather = action.weather.toBuilder();
   });

@@ -21,8 +21,7 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
       'description',
-      serializers.serialize(object.description,
-          specifiedType: const FullType(String)),
+      serializers.serialize(object.description, specifiedType: const FullType(String)),
       'icon',
       serializers.serialize(object.icon, specifiedType: const FullType(String)),
     ];
@@ -42,16 +41,13 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+          result.id = serializers.deserialize(value, specifiedType: const FullType(int)) as int;
           break;
         case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.description = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
           break;
         case 'icon':
-          result.icon = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.icon = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -68,20 +64,16 @@ class _$Weather extends Weather {
   @override
   final String icon;
 
-  factory _$Weather([void Function(WeatherBuilder)? updates]) =>
-      (new WeatherBuilder()..update(updates)).build();
+  factory _$Weather([void Function(WeatherBuilder)? updates]) => (new WeatherBuilder()..update(updates)).build();
 
-  _$Weather._({required this.id, required this.description, required this.icon})
-      : super._() {
+  _$Weather._({required this.id, required this.description, required this.icon}) : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Weather', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        description, 'Weather', 'description');
+    BuiltValueNullFieldError.checkNotNull(description, 'Weather', 'description');
     BuiltValueNullFieldError.checkNotNull(icon, 'Weather', 'icon');
   }
 
   @override
-  Weather rebuild(void Function(WeatherBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  Weather rebuild(void Function(WeatherBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
   WeatherBuilder toBuilder() => new WeatherBuilder()..replace(this);
@@ -89,24 +81,17 @@ class _$Weather extends Weather {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Weather &&
-        id == other.id &&
-        description == other.description &&
-        icon == other.icon;
+    return other is Weather && id == other.id && description == other.description && icon == other.icon;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, id.hashCode), description.hashCode), icon.hashCode));
+    return $jf($jc($jc($jc(0, id.hashCode), description.hashCode), icon.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Weather')
-          ..add('id', id)
-          ..add('description', description)
-          ..add('icon', icon))
+    return (newBuiltValueToStringHelper('Weather')..add('id', id)..add('description', description)..add('icon', icon))
         .toString();
   }
 }
@@ -115,15 +100,21 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather? _$v;
 
   int? _id;
+
   int? get id => _$this._id;
+
   set id(int? id) => _$this._id = id;
 
   String? _description;
+
   String? get description => _$this._description;
+
   set description(String? description) => _$this._description = description;
 
   String? _icon;
+
   String? get icon => _$this._icon;
+
   set icon(String? icon) => _$this._icon = icon;
 
   WeatherBuilder();
@@ -155,10 +146,8 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
     final _$result = _$v ??
         new _$Weather._(
             id: BuiltValueNullFieldError.checkNotNull(id, 'Weather', 'id'),
-            description: BuiltValueNullFieldError.checkNotNull(
-                description, 'Weather', 'description'),
-            icon:
-                BuiltValueNullFieldError.checkNotNull(icon, 'Weather', 'icon'));
+            description: BuiltValueNullFieldError.checkNotNull(description, 'Weather', 'description'),
+            icon: BuiltValueNullFieldError.checkNotNull(icon, 'Weather', 'icon'));
     replace(_$result);
     return _$result;
   }

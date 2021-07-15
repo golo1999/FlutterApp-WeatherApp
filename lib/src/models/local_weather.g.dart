@@ -6,8 +6,7 @@ part of weather;
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<LocalWeather> _$localWeatherSerializer =
-    new _$LocalWeatherSerializer();
+Serializer<LocalWeather> _$localWeatherSerializer = new _$LocalWeatherSerializer();
 
 class _$LocalWeatherSerializer implements StructuredSerializer<LocalWeather> {
   @override
@@ -20,16 +19,14 @@ class _$LocalWeatherSerializer implements StructuredSerializer<LocalWeather> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'current',
-      serializers.serialize(object.current,
-          specifiedType: const FullType(Current)),
+      serializers.serialize(object.current, specifiedType: const FullType(Current)),
     ];
 
     return result;
   }
 
   @override
-  LocalWeather deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
+  LocalWeather deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LocalWeatherBuilder();
 
@@ -40,8 +37,7 @@ class _$LocalWeatherSerializer implements StructuredSerializer<LocalWeather> {
       final Object? value = iterator.current;
       switch (key) {
         case 'current':
-          result.current.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Current))! as Current);
+          result.current.replace(serializers.deserialize(value, specifiedType: const FullType(Current))! as Current);
           break;
       }
     }
@@ -62,8 +58,7 @@ class _$LocalWeather extends LocalWeather {
   }
 
   @override
-  LocalWeather rebuild(void Function(LocalWeatherBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  LocalWeather rebuild(void Function(LocalWeatherBuilder) updates) => (toBuilder()..update(updates)).build();
 
   @override
   LocalWeatherBuilder toBuilder() => new LocalWeatherBuilder()..replace(this);
@@ -81,18 +76,17 @@ class _$LocalWeather extends LocalWeather {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('LocalWeather')
-          ..add('current', current))
-        .toString();
+    return (newBuiltValueToStringHelper('LocalWeather')..add('current', current)).toString();
   }
 }
 
-class LocalWeatherBuilder
-    implements Builder<LocalWeather, LocalWeatherBuilder> {
+class LocalWeatherBuilder implements Builder<LocalWeather, LocalWeatherBuilder> {
   _$LocalWeather? _$v;
 
   CurrentBuilder? _current;
+
   CurrentBuilder get current => _$this._current ??= new CurrentBuilder();
+
   set current(CurrentBuilder? current) => _$this._current = current;
 
   LocalWeatherBuilder();
@@ -128,8 +122,7 @@ class LocalWeatherBuilder
         _$failedField = 'current';
         current.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'LocalWeather', _$failedField, e.toString());
+        throw new BuiltValueNestedFieldError('LocalWeather', _$failedField, e.toString());
       }
       rethrow;
     }

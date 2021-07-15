@@ -9,8 +9,7 @@ class LocalWeatherAPI {
 
   final Client _httpClient;
 
-  Future<LocalWeather> getLocalWeather(
-      final double latitude, final double longitude) async {
+  Future<LocalWeather> getLocalWeather(final double latitude, final double longitude) async {
     final String? apiKey = dotenv.env['WEATHER_API_KEY'];
 
     final Uri url = Uri(
@@ -31,8 +30,7 @@ class LocalWeatherAPI {
       throw StateError(response.body);
     }
 
-    final LocalWeather localWeather =
-        LocalWeather.fromJson(jsonDecode(response.body));
+    final LocalWeather localWeather = LocalWeather.fromJson(jsonDecode(response.body));
 
     return localWeather;
   }

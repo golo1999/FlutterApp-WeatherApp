@@ -8,8 +8,7 @@ import 'package:weather_app/src/models/local_weather.dart';
 import 'package:weather_app/src/models/location.dart';
 
 class LocationMiddleware {
-  const LocationMiddleware(
-      {required LocationAPI locationAPI, required LocalWeatherAPI weatherAPI})
+  const LocationMiddleware({required LocationAPI locationAPI, required LocalWeatherAPI weatherAPI})
       : _locationAPI = locationAPI,
         _weatherAPI = weatherAPI;
 
@@ -23,8 +22,7 @@ class LocationMiddleware {
     ];
   }
 
-  Future<void> _getLocation(
-      Store<AppState> store, GetLocation action, NextDispatcher next) async {
+  Future<void> _getLocation(Store<AppState> store, GetLocation action, NextDispatcher next) async {
     next(action);
 
     try {
@@ -37,13 +35,12 @@ class LocationMiddleware {
     }
   }
 
-  Future<void> _getLocalWeather(Store<AppState> store, GetLocalWeather action,
-      NextDispatcher next) async {
+  Future<void> _getLocalWeather(Store<AppState> store, GetLocalWeather action, NextDispatcher next) async {
     next(action);
 
     try {
-      final LocalWeather currentWeather = await _weatherAPI.getLocalWeather(
-          store.state.location!.lat, store.state.location!.lon);
+      final LocalWeather currentWeather =
+          await _weatherAPI.getLocalWeather(store.state.location!.lat, store.state.location!.lon);
 
       store.dispatch(GetLocalWeatherSuccessful(currentWeather));
     } catch (error) {

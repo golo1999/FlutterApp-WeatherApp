@@ -11,8 +11,7 @@ part 'current.g.dart';
 abstract class Current implements Built<Current, CurrentBuilder> {
   factory Current([void Function(CurrentBuilder b) updates]) = _$Current;
 
-  factory Current.fromJson(dynamic json) =>
-      serializers.deserializeWith(serializer, json)!;
+  factory Current.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
 
   Current._();
 
@@ -23,8 +22,7 @@ abstract class Current implements Built<Current, CurrentBuilder> {
 
   BuiltList<Weather> get weather;
 
-  Map<String, dynamic> get json =>
-      serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
+  Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 
   static Serializer<Current> get serializer => _$currentSerializer;
 
