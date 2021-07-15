@@ -14,3 +14,9 @@ void setTransparentStatusBar() {
     ),
   );
 }
+
+String convertKelvinToCelsius(double kelvinTemperature) {
+  final int celsiusTemperature = (kelvinTemperature - 273.15).toInt();
+
+  return '$celsiusTemperature °';
+}

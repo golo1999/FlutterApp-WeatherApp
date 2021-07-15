@@ -143,18 +143,6 @@ class _$Location extends Location {
             lat.hashCode),
         lon.hashCode));
   }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('Location')
-          ..add('status', status)
-          ..add('country', country)
-          ..add('region', region)
-          ..add('city', city)
-          ..add('lat', lat)
-          ..add('lon', lon))
-        .toString();
-  }
 }
 
 class LocationBuilder implements Builder<Location, LocationBuilder> {

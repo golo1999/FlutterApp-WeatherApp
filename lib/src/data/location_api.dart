@@ -23,8 +23,6 @@ class LocationAPI {
 
     final Location location = Location.fromJson(jsonDecode(response.body));
 
-    print('My location after Location.fromJson: ' + location.toString());
-
     return location;
   }
 }
