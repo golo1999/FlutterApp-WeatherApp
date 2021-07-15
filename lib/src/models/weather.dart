@@ -14,8 +14,11 @@ abstract class Weather implements Built<Weather, WeatherBuilder> {
 
   Weather._();
 
-  // nu merge
+  int get id;
+
   String get description;
+
+  String get icon;
 
   Map<String, dynamic> get json =>
       serializers.serializeWith(serializer, this)! as Map<String, dynamic>;

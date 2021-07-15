@@ -110,22 +110,16 @@ class CurrentBuilder implements Builder<Current, CurrentBuilder> {
   _$Current? _$v;
 
   double? _temp;
-
   double? get temp => _$this._temp;
-
   set temp(double? temp) => _$this._temp = temp;
 
   double? _feelsLike;
-
   double? get feelsLike => _$this._feelsLike;
-
   set feelsLike(double? feelsLike) => _$this._feelsLike = feelsLike;
 
   ListBuilder<Weather>? _weather;
-
   ListBuilder<Weather> get weather =>
       _$this._weather ??= new ListBuilder<Weather>();
-
   set weather(ListBuilder<Weather>? weather) => _$this._weather = weather;
 
   CurrentBuilder();

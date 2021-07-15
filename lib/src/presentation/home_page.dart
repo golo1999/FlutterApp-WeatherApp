@@ -106,7 +106,8 @@ class HomePage extends StatelessWidget {
                                       data.size.shortestSide * 0.025,
                                     ),
                                     child: SvgPicture.asset(
-                                      clearSkyNightIcon,
+                                      getIconPathFromWeather(
+                                          localWeather.current.weather.first),
                                       width: data.size.longestSide * 0.1,
                                       height: data.size.longestSide * 0.1,
                                     ),

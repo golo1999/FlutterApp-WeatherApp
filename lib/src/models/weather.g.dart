@@ -18,9 +18,13 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
   Iterable<Object?> serialize(Serializers serializers, Weather object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'description',
       serializers.serialize(object.description,
           specifiedType: const FullType(String)),
+      'icon',
+      serializers.serialize(object.icon, specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -37,8 +41,16 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'description':
           result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'icon':
+          result.icon = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -50,14 +62,21 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
 
 class _$Weather extends Weather {
   @override
+  final int id;
+  @override
   final String description;
+  @override
+  final String icon;
 
   factory _$Weather([void Function(WeatherBuilder)? updates]) =>
       (new WeatherBuilder()..update(updates)).build();
 
-  _$Weather._({required this.description}) : super._() {
+  _$Weather._({required this.id, required this.description, required this.icon})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'Weather', 'id');
     BuiltValueNullFieldError.checkNotNull(
         description, 'Weather', 'description');
+    BuiltValueNullFieldError.checkNotNull(icon, 'Weather', 'icon');
   }
 
   @override
@@ -70,18 +89,24 @@ class _$Weather extends Weather {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Weather && description == other.description;
+    return other is Weather &&
+        id == other.id &&
+        description == other.description &&
+        icon == other.icon;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, description.hashCode));
+    return $jf(
+        $jc($jc($jc(0, id.hashCode), description.hashCode), icon.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Weather')
-          ..add('description', description))
+          ..add('id', id)
+          ..add('description', description)
+          ..add('icon', icon))
         .toString();
   }
 }
@@ -89,18 +114,32 @@ class _$Weather extends Weather {
 class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather? _$v;
 
+  int? _id;
+
+  int? get id => _$this._id;
+
+  set id(int? id) => _$this._id = id;
+
   String? _description;
 
   String? get description => _$this._description;
 
   set description(String? description) => _$this._description = description;
 
+  String? _icon;
+
+  String? get icon => _$this._icon;
+
+  set icon(String? icon) => _$this._icon = icon;
+
   WeatherBuilder();
 
   WeatherBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _id = $v.id;
       _description = $v.description;
+      _icon = $v.icon;
       _$v = null;
     }
     return this;
@@ -121,8 +160,11 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather build() {
     final _$result = _$v ??
         new _$Weather._(
+            id: BuiltValueNullFieldError.checkNotNull(id, 'Weather', 'id'),
             description: BuiltValueNullFieldError.checkNotNull(
-                description, 'Weather', 'description'));
+                description, 'Weather', 'description'),
+            icon:
+                BuiltValueNullFieldError.checkNotNull(icon, 'Weather', 'icon'));
     replace(_$result);
     return _$result;
   }
