@@ -12,6 +12,7 @@ class LocalWeatherAPI {
   Future<LocalWeather> getLocalWeather(
       final double latitude, final double longitude) async {
     final String? apiKey = dotenv.env['WEATHER_API_KEY'];
+
     final Uri url = Uri(
       scheme: 'https',
       host: 'api.openweathermap.org',
@@ -29,8 +30,6 @@ class LocalWeatherAPI {
     if (response.statusCode >= 300) {
       throw StateError(response.body);
     }
-
-    print(response.body);
 
     final LocalWeather localWeather =
         LocalWeather.fromJson(jsonDecode(response.body));

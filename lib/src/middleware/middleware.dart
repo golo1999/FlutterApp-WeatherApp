@@ -44,6 +44,7 @@ class LocationMiddleware {
     try {
       final LocalWeather currentWeather = await _weatherAPI.getLocalWeather(
           store.state.location!.lat, store.state.location!.lon);
+
       store.dispatch(GetLocalWeatherSuccessful(currentWeather));
     } catch (error) {
       store.dispatch(GetLocalWeatherError(error));

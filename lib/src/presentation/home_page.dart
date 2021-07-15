@@ -19,9 +19,12 @@ class HomePage extends StatelessWidget {
       builder: (BuildContext context, Location? location) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text(
+            title: Text(
               applicationTitle,
-              style: TextStyle(color: whiteColor),
+              style: TextStyle(
+                color: whiteColor,
+                fontSize: data.size.shortestSide * 0.05,
+              ),
             ),
             backgroundColor: primaryColor,
             centerTitle: true,
@@ -66,7 +69,7 @@ class HomePage extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
-                                if (location != null)
+                                if (location != null && localWeather != null)
                                   Padding(
                                     padding: EdgeInsets.symmetric(
                                       horizontal:
@@ -95,7 +98,6 @@ class HomePage extends StatelessWidget {
                                       style: TextStyle(
                                         color: primaryColor,
                                         fontSize: data.size.shortestSide * 0.05,
-                                        fontStyle: FontStyle.italic,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
@@ -141,26 +143,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-/*
-
-Icons:
-  - Group 2xx: Thunderstorm X
-  - Group 3xx: Drizzle X
-  - Group 5xx: Rain X
-  - Group 6xx: Snow X
-  - Group 7xx: Atmosphere X
-    - Mist X
-    - Smoke X
-    - Haze X
-    - Sand/Dust whirls X
-    - Fog X
-    - Sand X
-    - Dust X
-    - Volcanic ash X
-    - Squalls X
-    - Tornado X
-  - Group 800: Clear X
-  - Group 80x: Clouds X
-
- */
