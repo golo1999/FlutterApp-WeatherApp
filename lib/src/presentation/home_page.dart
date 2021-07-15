@@ -109,7 +109,9 @@ class HomePage extends StatelessWidget {
                                     ),
                                     child: SvgPicture.asset(
                                       getIconPathFromWeather(
-                                          localWeather.current.weather.first),
+                                        localWeather.current.weather.first,
+                                      ),
+                                      color: primaryColor,
                                       width: data.size.longestSide * 0.1,
                                       height: data.size.longestSide * 0.1,
                                     ),
