@@ -17,47 +17,21 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Weather object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'current',
-      serializers.serialize(object.current,
-          specifiedType: const FullType(Current)),
-    ];
-
-    return result;
+    return <Object?>[];
   }
 
   @override
   Weather deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new WeatherBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'current':
-          result.current.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Current))! as Current);
-          break;
-      }
-    }
-
-    return result.build();
+    return new WeatherBuilder().build();
   }
 }
 
 class _$Weather extends Weather {
-  @override
-  final Current current;
-
   factory _$Weather([void Function(WeatherBuilder)? updates]) =>
       (new WeatherBuilder()..update(updates)).build();
 
-  _$Weather._({required this.current}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(current, 'Weather', 'current');
-  }
+  _$Weather._() : super._();
 
   @override
   Weather rebuild(void Function(WeatherBuilder) updates) =>
@@ -69,38 +43,24 @@ class _$Weather extends Weather {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Weather && current == other.current;
+    return other is Weather;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, current.hashCode));
+    return 753311653;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Weather')..add('current', current))
-        .toString();
+    return newBuiltValueToStringHelper('Weather').toString();
   }
 }
 
 class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather? _$v;
 
-  CurrentBuilder? _current;
-  CurrentBuilder get current => _$this._current ??= new CurrentBuilder();
-  set current(CurrentBuilder? current) => _$this._current = current;
-
   WeatherBuilder();
-
-  WeatherBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _current = $v.current.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
 
   @override
   void replace(Weather other) {
@@ -115,20 +75,7 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
 
   @override
   _$Weather build() {
-    _$Weather _$result;
-    try {
-      _$result = _$v ?? new _$Weather._(current: current.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'current';
-        current.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'Weather', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ?? new _$Weather._();
     replace(_$result);
     return _$result;
   }

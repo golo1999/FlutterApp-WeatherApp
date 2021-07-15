@@ -31,7 +31,7 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       result
         ..add('weather')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(Weather)));
+            specifiedType: const FullType(LocalWeather)));
     }
     return result;
   }
@@ -53,7 +53,7 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           break;
         case 'weather':
           result.weather.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Weather))! as Weather);
+              specifiedType: const FullType(LocalWeather))! as LocalWeather);
           break;
       }
     }
@@ -66,7 +66,7 @@ class _$AppState extends AppState {
   @override
   final Location? location;
   @override
-  final Weather? weather;
+  final LocalWeather? weather;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) =>
       (new AppStateBuilder()..update(updates)).build();
@@ -109,9 +109,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   LocationBuilder get location => _$this._location ??= new LocationBuilder();
   set location(LocationBuilder? location) => _$this._location = location;
 
-  WeatherBuilder? _weather;
-  WeatherBuilder get weather => _$this._weather ??= new WeatherBuilder();
-  set weather(WeatherBuilder? weather) => _$this._weather = weather;
+  LocalWeatherBuilder? _weather;
+  LocalWeatherBuilder get weather =>
+      _$this._weather ??= new LocalWeatherBuilder();
+  set weather(LocalWeatherBuilder? weather) => _$this._weather = weather;
 
   AppStateBuilder();
 
