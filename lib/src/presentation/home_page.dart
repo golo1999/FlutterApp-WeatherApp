@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/src/container/local_weather_container.dart';
 import 'package:weather_app/src/container/location_container.dart';
-import 'package:weather_app/src/container/weather_container.dart';
 import 'package:weather_app/src/models/app_data.dart';
+import 'package:weather_app/src/models/local_weather.dart';
 import 'package:weather_app/src/models/location.dart';
-import 'package:weather_app/src/models/weather.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,14 +28,14 @@ class HomePage extends StatelessWidget {
           ),
           body: LocationContainer(
             builder: (BuildContext context, Location? location) {
-              return WeatherContainer(
-                builder: (BuildContext context, Weather? weather) {
+              return LocalWeatherContainer(
+                builder: (BuildContext context, LocalWeather? localWeather) {
                   return SizedBox(
                     width: data.size.width,
                     height: data.size.height,
                     child: Container(
                       color: secondaryColor,
-                      child: location == null && weather == null
+                      child: location == null && localWeather == null
                           // if the location and weather are both null
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -83,14 +83,15 @@ class HomePage extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                if (weather != null)
+                                if (localWeather != null)
                                   Padding(
                                     padding: EdgeInsets.all(
                                       data.size.shortestSide * 0.025,
                                     ),
                                     child: Text(
-                                      'Cloudy',
-                                      //weather.current.weather['description'].toString().toUpperCase(),
+                                      localWeather
+                                          .current.weather.first.description
+                                          .toUpperCase(),
                                       style: TextStyle(
                                         color: primaryColor,
                                         fontSize: data.size.shortestSide * 0.05,
@@ -99,7 +100,7 @@ class HomePage extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                if (weather != null)
+                                if (localWeather != null)
                                   Padding(
                                     padding: EdgeInsets.all(
                                       data.size.shortestSide * 0.025,
@@ -110,14 +111,14 @@ class HomePage extends StatelessWidget {
                                       height: data.size.longestSide * 0.1,
                                     ),
                                   ),
-                                if (weather != null)
+                                if (localWeather != null)
                                   Padding(
                                     padding: EdgeInsets.all(
                                       data.size.shortestSide * 0.025,
                                     ),
                                     child: Text(
                                       convertKelvinToCelsius(
-                                        weather.current.temp,
+                                        localWeather.current.temp,
                                       ),
                                       style: TextStyle(
                                         color: primaryColor,

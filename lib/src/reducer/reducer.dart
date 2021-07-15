@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
+import 'package:weather_app/src/actions/get_local_weather.dart';
 import 'package:weather_app/src/actions/get_location.dart';
-import 'package:weather_app/src/actions/get_weather.dart';
 import 'package:weather_app/src/models/app_state.dart';
 
 Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
@@ -8,7 +8,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
     return state;
   },
   TypedReducer<AppState, GetLocationSuccessful>(_getLocationSuccessful),
-  TypedReducer<AppState, GetWeatherSuccessful>(_getWeatherSuccessful),
+  TypedReducer<AppState, GetLocalWeatherSuccessful>(_getWeatherSuccessful),
 ]);
 
 AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
@@ -17,7 +17,8 @@ AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
   });
 }
 
-AppState _getWeatherSuccessful(AppState state, GetWeatherSuccessful action) {
+AppState _getWeatherSuccessful(
+    AppState state, GetLocalWeatherSuccessful action) {
   return state.rebuild((AppStateBuilder builder) {
     builder.weather = action.weather.toBuilder();
   });

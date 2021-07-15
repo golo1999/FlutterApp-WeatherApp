@@ -20,6 +20,13 @@ class _$CurrentSerializer implements StructuredSerializer<Current> {
     final result = <Object?>[
       'temp',
       serializers.serialize(object.temp, specifiedType: const FullType(double)),
+      'feels_like',
+      serializers.serialize(object.feelsLike,
+          specifiedType: const FullType(double)),
+      'weather',
+      serializers.serialize(object.weather,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Weather)])),
     ];
 
     return result;
@@ -40,6 +47,16 @@ class _$CurrentSerializer implements StructuredSerializer<Current> {
           result.temp = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
+        case 'feels_like':
+          result.feelsLike = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
+          break;
+        case 'weather':
+          result.weather.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Weather)]))!
+              as BuiltList<Object?>);
+          break;
       }
     }
 
@@ -50,12 +67,20 @@ class _$CurrentSerializer implements StructuredSerializer<Current> {
 class _$Current extends Current {
   @override
   final double temp;
+  @override
+  final double feelsLike;
+  @override
+  final BuiltList<Weather> weather;
 
   factory _$Current([void Function(CurrentBuilder)? updates]) =>
       (new CurrentBuilder()..update(updates)).build();
 
-  _$Current._({required this.temp}) : super._() {
+  _$Current._(
+      {required this.temp, required this.feelsLike, required this.weather})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(temp, 'Current', 'temp');
+    BuiltValueNullFieldError.checkNotNull(feelsLike, 'Current', 'feelsLike');
+    BuiltValueNullFieldError.checkNotNull(weather, 'Current', 'weather');
   }
 
   @override
@@ -68,12 +93,16 @@ class _$Current extends Current {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Current && temp == other.temp;
+    return other is Current &&
+        temp == other.temp &&
+        feelsLike == other.feelsLike &&
+        weather == other.weather;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, temp.hashCode));
+    return $jf(
+        $jc($jc($jc(0, temp.hashCode), feelsLike.hashCode), weather.hashCode));
   }
 }
 
@@ -81,8 +110,23 @@ class CurrentBuilder implements Builder<Current, CurrentBuilder> {
   _$Current? _$v;
 
   double? _temp;
+
   double? get temp => _$this._temp;
+
   set temp(double? temp) => _$this._temp = temp;
+
+  double? _feelsLike;
+
+  double? get feelsLike => _$this._feelsLike;
+
+  set feelsLike(double? feelsLike) => _$this._feelsLike = feelsLike;
+
+  ListBuilder<Weather>? _weather;
+
+  ListBuilder<Weather> get weather =>
+      _$this._weather ??= new ListBuilder<Weather>();
+
+  set weather(ListBuilder<Weather>? weather) => _$this._weather = weather;
 
   CurrentBuilder();
 
@@ -90,6 +134,8 @@ class CurrentBuilder implements Builder<Current, CurrentBuilder> {
     final $v = _$v;
     if ($v != null) {
       _temp = $v.temp;
+      _feelsLike = $v.feelsLike;
+      _weather = $v.weather.toBuilder();
       _$v = null;
     }
     return this;
@@ -108,10 +154,26 @@ class CurrentBuilder implements Builder<Current, CurrentBuilder> {
 
   @override
   _$Current build() {
-    final _$result = _$v ??
-        new _$Current._(
-            temp:
-                BuiltValueNullFieldError.checkNotNull(temp, 'Current', 'temp'));
+    _$Current _$result;
+    try {
+      _$result = _$v ??
+          new _$Current._(
+              temp: BuiltValueNullFieldError.checkNotNull(
+                  temp, 'Current', 'temp'),
+              feelsLike: BuiltValueNullFieldError.checkNotNull(
+                  feelsLike, 'Current', 'feelsLike'),
+              weather: weather.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'weather';
+        weather.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Current', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

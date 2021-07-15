@@ -17,21 +17,48 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
   @override
   Iterable<Object?> serialize(Serializers serializers, Weather object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object?>[];
+    final result = <Object?>[
+      'description',
+      serializers.serialize(object.description,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
   }
 
   @override
   Weather deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return new WeatherBuilder().build();
+    final result = new WeatherBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
   }
 }
 
 class _$Weather extends Weather {
+  @override
+  final String description;
+
   factory _$Weather([void Function(WeatherBuilder)? updates]) =>
       (new WeatherBuilder()..update(updates)).build();
 
-  _$Weather._() : super._();
+  _$Weather._({required this.description}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        description, 'Weather', 'description');
+  }
 
   @override
   Weather rebuild(void Function(WeatherBuilder) updates) =>
@@ -43,24 +70,41 @@ class _$Weather extends Weather {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Weather;
+    return other is Weather && description == other.description;
   }
 
   @override
   int get hashCode {
-    return 753311653;
+    return $jf($jc(0, description.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Weather').toString();
+    return (newBuiltValueToStringHelper('Weather')
+          ..add('description', description))
+        .toString();
   }
 }
 
 class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather? _$v;
 
+  String? _description;
+
+  String? get description => _$this._description;
+
+  set description(String? description) => _$this._description = description;
+
   WeatherBuilder();
+
+  WeatherBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _description = $v.description;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(Weather other) {
@@ -75,7 +119,10 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
 
   @override
   _$Weather build() {
-    final _$result = _$v ?? new _$Weather._();
+    final _$result = _$v ??
+        new _$Weather._(
+            description: BuiltValueNullFieldError.checkNotNull(
+                description, 'Weather', 'description'));
     replace(_$result);
     return _$result;
   }

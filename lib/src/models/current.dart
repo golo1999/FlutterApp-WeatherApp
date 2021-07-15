@@ -4,6 +4,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:weather_app/src/models/serializers.dart';
+import 'package:weather_app/src/models/weather.dart';
 
 part 'current.g.dart';
 
@@ -17,7 +18,10 @@ abstract class Current implements Built<Current, CurrentBuilder> {
 
   double get temp;
 
-  //List<Map<String, dynamic>> get weather;
+  @BuiltValueField(wireName: 'feels_like')
+  double get feelsLike;
+
+  BuiltList<Weather> get weather;
 
   Map<String, dynamic> get json =>
       serializers.serializeWith(serializer, this)! as Map<String, dynamic>;

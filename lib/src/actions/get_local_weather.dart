@@ -1,30 +1,30 @@
-import 'package:weather_app/src/models/weather.dart';
+import 'package:weather_app/src/models/local_weather.dart';
 
-class GetWeather {
-  GetWeather(this.latitude, this.longitude);
+class GetLocalWeather {
+  GetLocalWeather(this.latitude, this.longitude);
 
   final double latitude;
   final double longitude;
 }
 
-class GetWeatherSuccessful {
-  GetWeatherSuccessful(this.weather);
+class GetLocalWeatherSuccessful {
+  GetLocalWeatherSuccessful(this.weather);
 
-  final Weather weather;
+  final LocalWeather weather;
 
   @override
   String toString() {
-    return 'GetWeatherSuccessful{weather: $weather}';
+    return 'GetLocalWeatherSuccessful{weather: $weather}';
   }
 }
 
-class GetWeatherError {
-  GetWeatherError(this.error);
+class GetLocalWeatherError {
+  GetLocalWeatherError(this.error);
 
   final dynamic error;
 
   @override
   String toString() {
-    return 'GetWeatherError{error: $error}';
+    return 'GetLocalWeatherError{error: $error}';
   }
 }

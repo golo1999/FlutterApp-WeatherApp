@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
-import 'package:weather_app/src/models/weather.dart';
+import 'package:weather_app/src/models/local_weather.dart';
 
-class WeatherAPI {
-  WeatherAPI({required Client httpClient}) : _httpClient = httpClient;
+class LocalWeatherAPI {
+  LocalWeatherAPI({required Client httpClient}) : _httpClient = httpClient;
 
   final Client _httpClient;
 
-  Future<Weather> getWeather(
+  Future<LocalWeather> getLocalWeather(
       final double latitude, final double longitude) async {
     final String? apiKey = dotenv.env['WEATHER_API_KEY'];
     final Uri url = Uri(
@@ -30,8 +30,11 @@ class WeatherAPI {
       throw StateError(response.body);
     }
 
-    final Weather weather = Weather.fromJson(jsonDecode(response.body));
+    print(response.body);
 
-    return weather;
+    final LocalWeather localWeather =
+        LocalWeather.fromJson(jsonDecode(response.body));
+
+    return localWeather;
   }
 }
