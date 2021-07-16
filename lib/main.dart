@@ -22,8 +22,6 @@ Future<void> main() async {
 
   final LocalWeatherAPI localWeatherAPI = LocalWeatherAPI(httpClient: client);
 
-  // final LocationMiddleware locationMiddleware = LocationMiddleware(locationAPI: locationAPI, weatherAPI: localWeatherAPI);
-
   final AppEpic appEpic = AppEpic(locationAPI: locationAPI, localWeatherAPI: localWeatherAPI);
 
   final Store<AppState> store = Store<AppState>(
