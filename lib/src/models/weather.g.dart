@@ -100,21 +100,15 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather? _$v;
 
   int? _id;
-
   int? get id => _$this._id;
-
   set id(int? id) => _$this._id = id;
 
   String? _description;
-
   String? get description => _$this._description;
-
   set description(String? description) => _$this._description = description;
 
   String? _icon;
-
   String? get icon => _$this._icon;
-
   set icon(String? icon) => _$this._icon = icon;
 
   WeatherBuilder();

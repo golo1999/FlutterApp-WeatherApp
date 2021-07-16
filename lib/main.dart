@@ -4,10 +4,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_epics/redux_epics.dart';
 import 'package:weather_app/src/actions/get_location.dart';
 import 'package:weather_app/src/data/location_api.dart';
 import 'package:weather_app/src/data/weather_api.dart';
-import 'package:weather_app/src/middleware/middleware.dart';
+import 'package:weather_app/src/epics/app_epic.dart';
 import 'package:weather_app/src/models/app_state.dart';
 import 'package:weather_app/src/presentation/home_page.dart';
 import 'package:weather_app/src/reducer/reducer.dart';
@@ -19,14 +20,18 @@ Future<void> main() async {
 
   final LocationAPI locationAPI = LocationAPI(httpClient: client);
 
-  final LocalWeatherAPI weatherAPI = LocalWeatherAPI(httpClient: client);
+  final LocalWeatherAPI localWeatherAPI = LocalWeatherAPI(httpClient: client);
 
-  final LocationMiddleware locationMiddleware = LocationMiddleware(locationAPI: locationAPI, weatherAPI: weatherAPI);
+  // final LocationMiddleware locationMiddleware = LocationMiddleware(locationAPI: locationAPI, weatherAPI: localWeatherAPI);
+
+  final AppEpic appEpic = AppEpic(locationAPI: locationAPI, localWeatherAPI: localWeatherAPI);
 
   final Store<AppState> store = Store<AppState>(
     reducer,
     initialState: AppState(),
-    middleware: locationMiddleware.middleware,
+    middleware: <Middleware<AppState>>[
+      EpicMiddleware<AppState>(appEpic.epic),
+    ],
   );
 
   store.dispatch(GetLocation());

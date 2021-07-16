@@ -133,39 +133,27 @@ class LocationBuilder implements Builder<Location, LocationBuilder> {
   _$Location? _$v;
 
   String? _status;
-
   String? get status => _$this._status;
-
   set status(String? status) => _$this._status = status;
 
   String? _country;
-
   String? get country => _$this._country;
-
   set country(String? country) => _$this._country = country;
 
   String? _region;
-
   String? get region => _$this._region;
-
   set region(String? region) => _$this._region = region;
 
   String? _city;
-
   String? get city => _$this._city;
-
   set city(String? city) => _$this._city = city;
 
   double? _lat;
-
   double? get lat => _$this._lat;
-
   set lat(double? lat) => _$this._lat = lat;
 
   double? _lon;
-
   double? get lon => _$this._lon;
-
   set lon(double? lon) => _$this._lon = lon;
 
   LocationBuilder();
