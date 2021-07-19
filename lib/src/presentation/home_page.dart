@@ -5,8 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_app/src/container/local_weather_container.dart';
 import 'package:weather_app/src/container/location_container.dart';
 import 'package:weather_app/src/models/app_data.dart';
-import 'package:weather_app/src/models/local_weather.dart';
-import 'package:weather_app/src/models/location.dart';
+import 'package:weather_app/src/models/index.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

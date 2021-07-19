@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
-import 'package:weather_app/src/models/local_weather.dart';
+import 'package:weather_app/src/models/index.dart';
 
 class LocalWeatherAPI {
   LocalWeatherAPI({required Client httpClient}) : _httpClient = httpClient;

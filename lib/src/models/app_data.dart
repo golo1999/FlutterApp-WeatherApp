@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/services.dart';
-import 'package:weather_app/src/models/weather.dart';
+import 'package:weather_app/src/models/index.dart';
 
 const String applicationTitle = 'WeatherApp';
 const String noWeatherText = "Couldn't get weather data. Please try again.";

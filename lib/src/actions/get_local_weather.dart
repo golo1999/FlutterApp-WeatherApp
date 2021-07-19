@@ -1,30 +1,40 @@
-import 'package:weather_app/src/models/local_weather.dart';
+part of actions;
 
-class GetLocalWeather {
-  GetLocalWeather(this.latitude, this.longitude);
+@freezed
+class GetLocalWeather with _$GetLocalWeather implements AppAction {
+  const factory GetLocalWeather() = GetLocalWeatherStart;
 
-  final double latitude;
-  final double longitude;
+  const factory GetLocalWeather.successful(LocalWeather localWeather) = GetLocalWeatherSuccessful;
+
+  @Implements(ErrorAction)
+  const factory GetLocalWeather.error(Object error, StackTrace stackTrace) = GetLocalWeatherError;
 }
 
-class GetLocalWeatherSuccessful {
-  GetLocalWeatherSuccessful(this.weather);
-
-  final LocalWeather weather;
-
-  @override
-  String toString() {
-    return 'GetLocalWeatherSuccessful{weather: $weather}';
-  }
-}
-
-class GetLocalWeatherError {
-  GetLocalWeatherError(this.error);
-
-  final dynamic error;
-
-  @override
-  String toString() {
-    return 'GetLocalWeatherError{error: $error}';
-  }
-}
+// class GetLocalWeather {
+//   GetLocalWeather(this.latitude, this.longitude);
+//
+//   final double latitude;
+//   final double longitude;
+// }
+//
+// class GetLocalWeatherSuccessful {
+//   GetLocalWeatherSuccessful(this.weather);
+//
+//   final LocalWeather weather;
+//
+//   @override
+//   String toString() {
+//     return 'GetLocalWeatherSuccessful{weather: $weather}';
+//   }
+// }
+//
+// class GetLocalWeatherError {
+//   GetLocalWeatherError(this.error);
+//
+//   final dynamic error;
+//
+//   @override
+//   String toString() {
+//     return 'GetLocalWeatherError{error: $error}';
+//   }
+// }
