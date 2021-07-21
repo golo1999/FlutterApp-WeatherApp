@@ -20,28 +20,6 @@ class AppEpic {
     ]);
   }
 
-  // Stream<AppAction> _getLocation(Stream<GetLocationStart> actions, EpicStore<AppState> store) {
-  //   return actions //
-  //       .asyncMap((GetLocationStart event) => _locationAPI.getLocation())
-  //       .expand((Location location) {
-  //     return <Object>[
-  //       GetLocation.successful(location),
-  //       const GetLocalWeatherStart(),
-  //     ];
-  //   }).onErrorReturnWith((Object error, StackTrace stackTrace) => GetLocation.error(error, stackTrace));
-  // }
-  //
-  // Stream<AppAction> _getLocalWeather(Stream<GetLocalWeatherStart> actions, EpicStore<AppState> store) {
-  //   return actions //
-  //       .asyncMap((GetLocalWeatherStart event) =>
-  //           _localWeatherAPI.getLocalWeather(store.state.location!.lat, store.state.location!.lon))
-  //       .map<Object>((LocalWeather localWeather) => GetLocalWeather.successful(localWeather))
-  //       .onErrorReturnWith((Object error, StackTrace stackTrace) {
-  //     print(stackTrace);
-  //     return GetLocalWeather.error(error, stackTrace);
-  //   });
-  // }
-
   Stream<AppAction> _getLocation(Stream<GetLocationStart> actions, EpicStore<AppState> store) {
     return actions //
         .asyncMap((GetLocationStart event) => _locationAPI.getLocation())

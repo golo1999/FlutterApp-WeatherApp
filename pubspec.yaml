@@ -27,10 +27,12 @@ dev_dependencies:
   flutter_lints: ^1.0.4
   built_value_generator: ^8.1.1
   build_runner: ^2.0.6
-  freezed: ^0.14.2
+  freezed: ^0.14.3
 
 dependency_overrides:
   rxdart: ^0.27.1
+  analyzer: ^2.0.0
+  meta: ^1.7.0
 
 flutter:
   uses-material-design: true
